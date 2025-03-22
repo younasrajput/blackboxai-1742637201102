@@ -52,10 +52,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Package Selection Handler
 function selectPackage(packageName, price) {
-    const packageModal = new bootstrap.Modal(document.getElementById('packageModal'));
     document.getElementById('package_name').value = packageName;
     document.getElementById('package_price').value = price;
-    packageModal.show();
+    
+    // Reset country selection and hide payment details
+    const countrySelect = document.getElementById('countrySelect');
+    const paymentDetails = document.getElementById('paymentDetails');
+    if (countrySelect) {
+        countrySelect.value = '';
+    }
+    if (paymentDetails) {
+        paymentDetails.classList.add('d-none');
+    }
+    
+    // Show modal using Bootstrap's data attribute
+    const modalElement = document.getElementById('packageModal');
+    const modal = new bootstrap.Modal(modalElement);
+    modal.show();
 }
 
 // Bank Details by Country
